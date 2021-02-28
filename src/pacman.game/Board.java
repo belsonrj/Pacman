@@ -149,6 +149,23 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+	public void playMusic(String musicLocation) {
+    	try {
+    		File musicPath = new File(musicLocation);
+    		if(musicPath.exists()) {
+    			AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+    			Clip clip = AudioSystem.getClip();
+    			clip.open(audioInput);
+    			clip.start();
+    			clip.loop(Clip.LOOP_CONTINUOUSLY);
+    		} else {
+    			System.out.println("Cannot find Audio File");
+    		}
+    	} catch (Exception ex) {
+    		ex.printStackTrace();
+    	}
+    }
+
     private void showIntroScreen(Graphics2D g2d) {
 
         g2d.setColor(new Color(0, 32, 48));
